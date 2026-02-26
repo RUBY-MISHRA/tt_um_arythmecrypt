@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "Arythmecrypt"      # Project title
-  author:       "Vaddi Divya"      # Your name
+  author:       "Vaddi Divya,Dr.Ruby Mishra,Dr.Subir Maity, Dr. J.K Das"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Arithmetic algorithms for cryptography"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
