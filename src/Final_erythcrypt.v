@@ -519,7 +519,7 @@ module mod_inverse(
     reg [7:0] quotient, remainder, temp;
     reg [7:0] t;
 
-    always @(*) begin
+    always @(a,m) begin
         x0 = 0; x1 = 1; y0 = 1; y1 = 0;
         x = a; y = m;
         if (y==0)begin
