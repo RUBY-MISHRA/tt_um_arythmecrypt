@@ -8,23 +8,23 @@ module mux_16to1(
     );
     always @(*) begin
     case (So)
-        4'b0000: Y=A;
-        4'b0001: Y=B;
-        4'b0010: Y=C;
-        4'b0011: Y=D;
-        4'b0100: Y=E;
-        4'b0101: Y=F;
-        4'b0110: Y=G;
-        4'b0111: Y=H;
-        4'b1000: Y=I;
-        4'b1001: Y=J;
-        4'b1010: Y=K;
-        4'b1011: Y=L;
-        4'b1100: Y=M;
-        4'b1101: Y=N;
-        4'b1110: Y=O;
-        4'b1111: Y=P;
-        default: Y = 8'b00000000;
+        4'b0000: Y<=A;
+        4'b0001: Y<=B;
+        4'b0010: Y<=C;
+        4'b0011: Y<=D;
+        4'b0100: Y<=E;
+        4'b0101: Y<=F;
+        4'b0110: Y<=G;
+        4'b0111: Y<=H;
+        4'b1000: Y<=I;
+        4'b1001: Y<=J;
+        4'b1010: Y<=K;
+        4'b1011: Y<=L;
+        4'b1100: Y<=M;
+        4'b1101: Y<=N;
+        4'b1110: Y<=O;
+        4'b1111: Y<=P;
+        default: Y <= 8'b00000000;
      endcase
    end
 endmodule
@@ -207,17 +207,17 @@ module comparator(
 
     always @(*) begin
         if (a < b) begin
-            a_lt_b = 1;
-            a_eq_b = 0;
-            a_gt_b = 0;
+            a_lt_b <= 1;
+            a_eq_b <= 0;
+            a_gt_b <= 0;
         end else if (a == b) begin
-            a_lt_b = 0;
-            a_eq_b = 1;
-            a_gt_b = 0;
+            a_lt_b <= 0;
+            a_eq_b <= 1;
+            a_gt_b <= 0;
         end else begin
-            a_lt_b = 0;
-            a_eq_b = 0;
-            a_gt_b = 1;
+            a_lt_b <= 0;
+            a_eq_b <= 0;
+            a_gt_b <= 1;
         end
     end
 
@@ -397,21 +397,21 @@ integer i,j,k;
 always@ (A or B)
 begin
 //Initialize the matrices-convert 1 D to 3D arrays
-{A1[0][0],A1[0][1],A1[1][0],A1[1][1]} = A;
-{B1[0][0],B1[0][1],B1[1][0],B1[1][1]} = B;
-i = 0;
-j = 0;
-k = 0;
-{Res1[0][0],Res1[0][1],Res1[1][0],Res1[1][1]} = 8'd0; //initialize to
+    {A1[0][0],A1[0][1],A1[1][0],A1[1][1]} <= A;
+    {B1[0][0],B1[0][1],B1[1][0],B1[1][1]} <= B;
+i <= 0;
+j< = 0;
+k <= 0;
+    {Res1[0][0],Res1[0][1],Res1[1][0],Res1[1][1]} <= 8'd0; //initialize to
 //zeros.
 //Matrix multiplication
 for(i=0;i<2;i=i+1)
 for(j=0;j<2;j=j+1)
 for(k=0;k<2;k=k+1)
-Res1[i][j] = Res1[i][j] + (A1[i][k] * B1[k][j]);
+    Res1[i][j] <= Res1[i][j] + (A1[i][k] * B1[k][j]);
 //final output assignment - 3D array to 1D array conversion.
 
-Res = {Res1[0][0],Res1[0][1],Res1[1][0],Res1[1][1]};
+Res <= {Res1[0][0],Res1[0][1],Res1[1][0],Res1[1][1]};
 end
 
 endmodule
@@ -526,18 +526,18 @@ module mod_inverse(
             t=0;
         end
         else begin
-            quotient = x / y;
-            remainder = x % y;
-            x = y;
-            y = remainder;
-            t = x0 - quotient * x1;
-            x0 = x1;
-            x1 = t;
-            t = y0 - quotient * y1;
-            y0 = y1;
-            y1 = t;
+            quotient <= x / y;
+            remainder <= x % y;
+            x <= y;
+            y <= remainder;
+            t <= x0 - quotient * x1;
+            x0 <= x1;
+            x1 <= t;
+            t <= y0 - quotient * y1;
+            y0 <= y1;
+            y1 <= t;
         end
-        inverse = x0 >= 0 ? x0 : x0 + m;
+        inverse <= x0 >= 0 ? x0 : x0 + m;
     end
 endmodule
 
